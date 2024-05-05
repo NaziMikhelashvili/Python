@@ -44,8 +44,14 @@ def find_contact():
 def copy_phonebook():
     with open('phonebook.txt', 'r', encoding='utf-8') as file:
         contacts_str = file.read()
-        with open('phonebook2.txt', 'a', encoding='utf-8') as file:
-            file.write(contacts_str)
+        contacts_list = contacts_str.rstrip().split('\n')
+        row = int(input('введите номер строки для копирования: '))
+        for n, contacts_str in enumerate(contacts_list, 1):
+            list_contact = contacts_str.replace(':', '').split()
+            with open('phonebook2.txt', 'a', encoding='utf-8') as file:
+                if n == row:
+                    file.write(contacts_str)
+                    file.write('\n')
     print('копирование завершено')
 
 def main():
